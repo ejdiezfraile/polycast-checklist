@@ -1,0 +1,58 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="polycast-checklist">
+  <template>
+    <style>
+      .task {
+        display: flex;
+        align-items: center;
+      }
+      paper-input {
+        display: inline-block;
+      }
+    </style>
+    <h3>Todo:</h3>
+    <dom-repeat
+      items="{{tasks}}" 
+      as="task">
+      <template>
+        <div class="task">
+          <paper-checkbox></paper-checkbox>
+          <paper-input no-label-float label="Task Name" value="{{task}}"></paper-input>
+        </div>
+      </template>
+    </dom-repeat>
+
+    <h3>completed:</h3>
+
+    <paper-button>Add Task</paper-button>
+  </template>
+
+  <script>
+    /**
+     * `polycast-checklist`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class PolycastChecklist extends Polymer.Element {
+      static get is() { return 'polycast-checklist'; }
+      static get properties() {
+        return {
+          tasks : {
+            type: Array,
+            value: () => [1, 2, 3, 4, 5]
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PolycastChecklist.is, PolycastChecklist);
+  </script>
+</dom-module>
